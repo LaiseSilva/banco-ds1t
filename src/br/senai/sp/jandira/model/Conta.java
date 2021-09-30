@@ -3,20 +3,49 @@ package br.senai.sp.jandira.model;
 public class Conta {
 	
 	public String tipo;
-	public String numero;
+	private String numero;
 	public String numeroAgencia;
 	public String titular;
-	public double saldo;
+	private double saldo;
+	
+	//Método construtor, no caso a conta ja é criada com o número.
+	public Conta(String numeroConta) {
+		numero = numeroConta;
+	}
 	
 	public void depositar(double valorDeposito) {
-		saldo += valorDeposito;
+		if(valorDeposito >= 1) {
+			saldo += valorDeposito;
+		}else {
+			System.out.println("Não é possível depositar valor negativo.");
+		}
 	}
 	
-	public void sacar(double valorSaque) {
-		saldo -= valorSaque;
+	public boolean  sacar(double valorSaque) {
+		if(valorSaque >= 1 && valorSaque <= saldo) {
+			saldo -= valorSaque;
+			return true;
+		}else {
+			if(valorSaque > saldo) {
+				System.out.println("Saldo insuficiente.");
+				return false;
+			}
+			else{
+				System.out.println("Valor incorreto, não foi possível efetuar o saque.");
+				return false;
+			}
+		}
+		
 	}
 	
-	public void transferir() {
+	public void transferir(Conta contaDestino, double valorTransferencia) {
+		boolean resultado = sacar(valorTransferencia);
+		
+		if(resultado) {
+			contaDestino.depositar(valorTransferencia);
+		} else {
+			System.out.println("Não foi possível efetuar a transferência.");
+		}
 		
 	}
 	
