@@ -2,15 +2,31 @@ package br.senai.sp.jandira.model;
 
 public class Conta {
 	
-	public String tipo;
+	private TipoConta tipo;
 	private String numero;
-	public String numeroAgencia;
-	public String titular;
+	private String numeroAgencia;
+	public Cliente titular;
 	private double saldo;
 	
 	//Método construtor, no caso a conta ja é criada com o número.
 	public Conta(String numeroConta) {
 		numero = numeroConta;
+	}
+	
+	public void setTipo(TipoConta tipo) {
+		this.tipo = tipo;
+	}
+	
+	public TipoConta getTipo() {
+		return tipo;
+	}
+	
+	public void setNumeroAgencia(String numeroAgencia) {
+		this.numeroAgencia = numeroAgencia;
+		}
+	
+	public String getNumeroAgencia() {
+		return numeroAgencia;
 	}
 	
 	public void depositar(double valorDeposito) {
