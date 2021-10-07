@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.model;
+package br.senai.sp.jandira.lista;
 
 public enum TipoConta {
 	
